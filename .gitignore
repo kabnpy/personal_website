@@ -1,0 +1,21 @@
+# Node & Astro
+node_modules/
+dist/
+.astro/
+npm-debug.log*
+
+# Blender scratch & backups
+blender/frames/
+blender/previews/
+blender/*.blend1
+
+# Local reference & archive clutter
+prototype.zip
+Lefos.html
+Lefos_files/
+
+# OS & environment
+.DS_Store
+.env
+.env.*
+!.env.example
