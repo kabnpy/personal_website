@@ -4,9 +4,10 @@ dist/
 .astro/
 npm-debug.log*
 
-# Blender scratch & backups
+# Blender scratch & generated files
 blender/frames/
 blender/previews/
+blender/*.blend
 blender/*.blend1
 
 # Local reference & archive clutter
