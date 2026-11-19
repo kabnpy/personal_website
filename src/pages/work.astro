@@ -28,15 +28,7 @@ import projects from '../data/work.json';
       <div class="specimen-list">
         {
           projects.map((project, i) => (
-            <SpecimenRow
-              index={project.index}
-              title={project.title}
-              discipline={project.discipline}
-              year={project.year}
-              description={project.description}
-              meta={project.meta}
-              revealOrder={i + 2}
-            />
+            <SpecimenRow project={project} revealOrder={i + 2} />
           ))
         }
       </div>

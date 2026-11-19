@@ -312,7 +312,7 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .chrome-link:hover {
+    :where(.chrome-link:hover, .chrome-toggle:hover:not(:disabled)) {
       color: var(--color-ink);
       background-color: var(--color-ink-hover-bg);
     }
@@ -355,25 +355,27 @@
     }
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    .chrome-toggle:hover:not(:disabled) {
-      color: var(--color-ink);
-      background-color: var(--color-ink-hover-bg);
-    }
-  }
-
   .chrome-toggle__icon {
     inline-size: 0.9rem;
     block-size: 0.9rem;
     flex-shrink: 0;
-    transition:
-      opacity 220ms var(--ease-editorial),
-      transform 220ms var(--ease-editorial);
+    transition: opacity 220ms var(--ease-editorial);
   }
 
   .chrome-toggle[aria-pressed="false"] .chrome-toggle__icon {
     opacity: 0.38;
-    transform: rotate(-18deg) scale(0.9);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .chrome-toggle__icon {
+      transition:
+        opacity 220ms var(--ease-editorial),
+        transform 220ms var(--ease-editorial);
+    }
+
+    .chrome-toggle[aria-pressed="false"] .chrome-toggle__icon {
+      transform: rotate(-18deg) scale(0.9);
+    }
   }
 
   /* Top-left geometric brand mark */
@@ -416,7 +418,7 @@
     color: var(--color-ink);
   }
 
-  :where(.hero-bio, .page-header__summary, .specimen-row__desc) {
+  :where(.hero-bio, .page-header__summary, .specimen-row__desc, .work-preview__desc) {
     font-family: var(--font-sans);
     font-size: var(--text-body);
     color: var(--color-ink-muted);
@@ -589,9 +591,15 @@
     text-align: center;
     color: var(--color-ink-muted);
     transform-origin: center;
-    transition:
-      color 280ms var(--ease-editorial),
-      transform 280ms var(--ease-editorial);
+    transition: color 280ms var(--ease-editorial);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .specimen-row__summary::after {
+      transition:
+        color 280ms var(--ease-editorial),
+        transform 280ms var(--ease-editorial);
+    }
   }
 
   .specimen-row[open] > .specimen-row__summary::after {
@@ -751,10 +759,8 @@
     }
 
     .work-preview__desc {
-      font-family: var(--font-sans);
       font-size: 0.98rem;
       line-height: 1.5;
-      color: var(--color-ink-muted);
       margin: 0;
     }
 

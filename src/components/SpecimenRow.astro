@@ -4,17 +4,22 @@ interface MetaItem {
   value: string;
 }
 
-interface Props {
+interface Project {
   index: string;
   title: string;
   discipline: string;
   year: string;
   description: string;
   meta: MetaItem[];
+}
+
+interface Props {
+  project: Project;
   revealOrder: number;
 }
 
-const { index, title, discipline, year, description, meta, revealOrder } = Astro.props;
+const { project, revealOrder } = Astro.props;
+const { index, title, discipline, year, description, meta } = project;
 ---
 
 <details class="specimen-row reveal" style={`--reveal-order: ${revealOrder}`}>
