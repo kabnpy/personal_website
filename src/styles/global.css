@@ -878,7 +878,6 @@
     font-size: var(--text-body);
     line-height: 1.6;
     color: var(--color-ink);
-    max-inline-size: 52ch;
     text-wrap: pretty;
   }
 
