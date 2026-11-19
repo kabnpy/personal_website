@@ -6,7 +6,7 @@ Migrate the static two-page site from `prototype/` into a maintainable **Astro**
 ## Requirements
 1. **Shared Layout (`src/layouts/BaseLayout.astro`)**
    - Renders `<head>` (charset, viewport, `color-scheme` meta, FOUC-prevention inline script, SVG favicon, Google Fonts `Geist` + `JetBrains Mono`, global CSS).
-   - Renders `AmbientLayers`, `SiteHeader`, `<slot />`, and `SiteFooter` inside `.frame`.
+   - Renders `AmbientLayers` as a fixed sibling outside `.frame`, and `SiteHeader`, `<slot />`, and `SiteFooter` inside `.frame`.
 2. **Components (`src/components/`)**
    - `AmbientLayers.astro`: `#shadow-video` (`/shadows.mp4`) and `.ambient-layer--grain`.
    - `SiteHeader.astro`: Brand mark on home (`/`), `← Home` link on inner pages, and primary nav (`Work` with `aria-current="page"` when active).
