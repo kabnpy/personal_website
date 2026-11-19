@@ -1,0 +1,68 @@
+[
+  {
+    "index": "01",
+    "title": "Fieldnotes",
+    "discipline": "Software",
+    "year": "2026",
+    "description": "A local-first notebook for long-form research with plain-text storage, margin citations, and distraction-free reading.",
+    "meta": [
+      { "label": "Role", "value": "Design & Engineering" },
+      { "label": "Stack", "value": "HTML, CSS, SQLite" }
+    ]
+  },
+  {
+    "index": "02",
+    "title": "Monolith Reader",
+    "discipline": "Editorial",
+    "year": "2025",
+    "description": "An RSS and essay reader modeled after printed monographs, featuring optical margins and keyboard-first navigation.",
+    "meta": [
+      { "label": "Role", "value": "Product Design" },
+      { "label": "Format", "value": "Web & macOS" }
+    ]
+  },
+  {
+    "index": "03",
+    "title": "Kestrel Specimen",
+    "discipline": "Typography",
+    "year": "2025",
+    "description": "Interactive variable-font specimen and optical-size tester built for an independent foundry release.",
+    "meta": [
+      { "label": "Role", "value": "Art Direction & Code" },
+      { "label": "Deliverable", "value": "Interactive Specimen" }
+    ]
+  },
+  {
+    "index": "04",
+    "title": "Quiet Calendar",
+    "discipline": "Software",
+    "year": "2024",
+    "description": "A monochrome weekly planner that replaces color-coded clutter with typographic hierarchy and time-block rhythms.",
+    "meta": [
+      { "label": "Role", "value": "Design & Prototype" },
+      { "label": "Status", "value": "Open Source" }
+    ]
+  },
+  {
+    "index": "05",
+    "title": "Index Press",
+    "discipline": "Identity",
+    "year": "2024",
+    "description": "Visual identity, print catalog grid, and web archive for a small publisher of essays on computing and craft.",
+    "meta": [
+      { "label": "Role", "value": "Identity & Web" },
+      { "label": "Medium", "value": "Print & Digital" }
+    ]
+  },
+  {
+    "index": "06",
+    "title": "Solstice Audio",
+    "discipline": "Software",
+    "year": "2023",
+    "description": "Minimalist browser synthesizer and tape-loop recorder inspired by Braun industrial hardware and Swiss grids.",
+    "meta": [
+      { "label": "Role", "value": "Interface & Audio" },
+      { "label": "Tech", "value": "Web Audio API" }
+    ]
+  }
+]

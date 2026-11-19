@@ -1,0 +1,40 @@
+---
+interface MetaItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  index: string;
+  title: string;
+  discipline: string;
+  year: string;
+  description: string;
+  meta: MetaItem[];
+  revealOrder: number;
+}
+
+const { index, title, discipline, year, description, meta, revealOrder } = Astro.props;
+---
+
+<details class="specimen-row reveal" style={`--reveal-order: ${revealOrder}`}>
+  <summary class="specimen-row__summary">
+    <span class="specimen-row__index mono-label text-muted">{index}</span>
+    <span class="specimen-row__title">{title}</span>
+    <span class="specimen-row__discipline mono-label text-muted">{discipline}</span>
+    <span class="specimen-row__year mono-label text-muted">{year}</span>
+  </summary>
+  <div class="specimen-row__body">
+    <p class="specimen-row__desc">{description}</p>
+    <dl class="specimen-meta">
+      {
+        meta.map((item) => (
+          <div>
+            <dt class="mono-label text-muted">{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</details>

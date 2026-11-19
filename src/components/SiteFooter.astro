@@ -1,0 +1,52 @@
+---
+interface Props {
+  highlightContact?: boolean;
+}
+
+const { highlightContact = false } = Astro.props;
+const contactClass = highlightContact ? 'chrome-highlight' : 'chrome-link';
+---
+
+<footer class="site-chrome cluster" data-justify="between">
+  <p class="mono-label text-muted">Maren Lind Studio.</p>
+
+  <div class="cluster">
+    <a
+      href="mailto:hello@example.com"
+      class={contactClass}
+      data-copy-email="hello@example.com"
+      title="Copy hello@example.com"
+    >
+      Say hello
+    </a>
+    <button
+      type="button"
+      id="shadows-toggle"
+      class="chrome-toggle"
+      aria-pressed="true"
+    >
+      <svg
+        class="chrome-toggle__icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+      </svg>
+      <span>Shadows</span>
+    </button>
+    <button
+      type="button"
+      id="theme-toggle"
+      class="chrome-toggle"
+      aria-label="Color theme: Auto"
+    >
+      <span id="theme-toggle-label">Auto</span>
+    </button>
+  </div>
+</footer>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Maren Lind — Personal Website"
+  description="Personal website of Maren Lind — designer and engineer."
+  isHome={true}
+  currentPath="/"
+>
+  <main class="hero-stage">
+    <div class="hero-grid">
+      <h1 class="hero-display reveal" style="--reveal-order: 1">Maren Lind</h1>
+
+      <div class="hero-aside reveal" style="--reveal-order: 2">
+        <p class="hero-bio">
+          Designer and engineer building software, editorial systems, and typographic tools.
+        </p>
+        <a href="/work" class="enter-link">
+          Selected work <span class="enter-link__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

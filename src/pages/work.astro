@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SpecimenRow from '../components/SpecimenRow.astro';
+import WorkPreview from '../components/WorkPreview.astro';
+import projects from '../data/work.json';
+---
+
+<BaseLayout
+  title="Work — Maren Lind"
+  description="Selected software, editorial, and identity projects by Maren Lind."
+  currentPath="/work"
+  highlightContact={true}
+>
+  <main class="page-main stack" data-gap="xl">
+    <section class="page-header reveal" style="--reveal-order: 1">
+      <div class="page-header__title-group">
+        <h1 class="display-title">Work</h1>
+        <p class="mono-label text-muted">
+          {String(projects.length).padStart(2, '0')} Selected · 2023—2026
+        </p>
+      </div>
+      <p class="page-header__summary">
+        Software, editorial systems, and typographic tools.
+      </p>
+    </section>
+
+    <section aria-label="Project index">
+      <div class="specimen-list">
+        {
+          projects.map((project, i) => (
+            <SpecimenRow
+              index={project.index}
+              title={project.title}
+              discipline={project.discipline}
+              year={project.year}
+              description={project.description}
+              meta={project.meta}
+              revealOrder={i + 2}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </main>
+
+  <WorkPreview />
+
+  <script slot="scripts">
+    import '../scripts/work-preview.js';
+  </script>
+</BaseLayout>

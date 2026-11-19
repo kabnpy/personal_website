@@ -1,0 +1,40 @@
+---
+interface Props {
+  isHome?: boolean;
+  currentPath?: string;
+}
+
+const { isHome = false, currentPath = '/' } = Astro.props;
+---
+
+<header class="site-chrome cluster" data-justify="between">
+  {
+    isHome ? (
+      <span class="brand-mark" aria-hidden="true">
+        <svg class="brand-mark__glyph" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="6" height="18" fill="currentColor" />
+          <rect x="11" y="15" width="10" height="6" fill="currentColor" />
+          <rect x="15" y="3" width="6" height="6" fill="currentColor" />
+        </svg>
+      </span>
+    ) : (
+      <a href="/" class="chrome-link">
+        <span class="chrome-link__arrow" aria-hidden="true">←</span> Home
+      </a>
+    )
+  }
+
+  <nav aria-label="Primary">
+    <ul class="nav-list cluster" role="list">
+      <li>
+        <a
+          href="/work"
+          class="chrome-link"
+          aria-current={currentPath === '/work' ? 'page' : undefined}
+        >
+          Work
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
