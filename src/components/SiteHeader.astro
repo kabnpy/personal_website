@@ -35,6 +35,24 @@ const { isHome = false, currentPath = '/' } = Astro.props;
           Work
         </a>
       </li>
+      <li>
+        <a
+          href="/about"
+          class="chrome-link"
+          aria-current={currentPath === '/about' ? 'page' : undefined}
+        >
+          About
+        </a>
+      </li>
+      <li>
+        <a
+          href="/contact"
+          class="chrome-link"
+          aria-current={currentPath === '/contact' ? 'page' : undefined}
+        >
+          Contact
+        </a>
+      </li>
     </ul>
   </nav>
 </header>

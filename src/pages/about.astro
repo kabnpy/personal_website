@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About — Maren Lind"
+  description="About Maren Lind, and what she is working on now."
+  currentPath="/about"
+  highlightContact={true}
+>
+  <main class="page-main stack" data-gap="xl">
+    <section class="page-header reveal" style="--reveal-order: 1">
+      <div class="page-header__title-group">
+        <h1 class="display-title">About</h1>
+        <p class="mono-label text-muted">designer · engineer</p>
+      </div>
+      <p class="page-header__summary">
+        A short introduction, and what I'm up to at the moment.
+      </p>
+    </section>
+
+    <div class="prose-grid">
+      <div class="prose-grid__content stack" data-gap="xl">
+        <section class="reveal" style="--reveal-order: 2" aria-labelledby="about-heading">
+          <div class="section-label">
+            <h2 id="about-heading" class="section-label__title mono-label text-muted">about</h2>
+          </div>
+          <div class="prose">
+            <p>
+              I'm Maren, a designer and engineer who likes building small, careful software and the
+              typographic systems behind it. I care about quiet interfaces, plain-text formats,
+              and tools that still make sense in ten years.
+            </p>
+            <p>
+              This site is my home on the web: a place for selected work, notes in progress, and
+              whatever I'm currently learning.
+            </p>
+            <p>
+              If something here interests you, I'd like to hear about it.
+              <a href="/contact" class="prose__link">Get in touch</a>.
+            </p>
+          </div>
+        </section>
+
+        <section class="reveal" style="--reveal-order: 3" aria-labelledby="now-heading">
+          <div class="section-label">
+            <h2 id="now-heading" class="section-label__title mono-label text-muted">now</h2>
+            <p class="mono-label text-muted" style="margin: 0;">
+              <time datetime="2026-11">updated november 2026</time>
+            </p>
+          </div>
+          <ul class="now-list">
+            <li>
+              <span class="mono-label text-muted">building</span>
+              <span>This site, and the next round of selected work.</span>
+            </li>
+            <li>
+              <span class="mono-label text-muted">learning</span>
+              <span>Something new in infrastructure and deployment.</span>
+            </li>
+            <li>
+              <span class="mono-label text-muted">reading</span>
+              <span>A book on typography and one on systems.</span>
+            </li>
+            <li>
+              <span class="mono-label text-muted">looking for</span>
+              <span>The next interesting role or collaboration.</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

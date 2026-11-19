@@ -8,13 +8,13 @@ const shadowsBtn = document.getElementById('shadows-toggle');
 
 if (video instanceof HTMLVideoElement && shadowsBtn) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let isEnabled = !reducedMotion.matches;
+  let shadowsOn = true;
 
   const syncShadows = () => {
-    shadowsBtn.setAttribute('aria-pressed', String(isEnabled));
-    video.dataset.paused = String(!isEnabled);
+    shadowsBtn.setAttribute('aria-pressed', String(shadowsOn));
+    video.dataset.hidden = String(!shadowsOn);
 
-    if (isEnabled && !document.hidden) {
+    if (shadowsOn && !reducedMotion.matches && !document.hidden) {
       video.play().catch(() => {});
     } else {
       video.pause();
@@ -24,14 +24,10 @@ if (video instanceof HTMLVideoElement && shadowsBtn) {
   syncShadows();
 
   shadowsBtn.addEventListener('click', () => {
-    isEnabled = !isEnabled;
+    shadowsOn = !shadowsOn;
     syncShadows();
   });
 
   document.addEventListener('visibilitychange', syncShadows);
-
-  reducedMotion.addEventListener('change', (e) => {
-    isEnabled = !e.matches;
-    syncShadows();
-  });
+  reducedMotion.addEventListener('change', syncShadows);
 }
