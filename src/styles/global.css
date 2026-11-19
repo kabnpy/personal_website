@@ -5,11 +5,11 @@
 @layer reset, base, composition, utilities, blocks, exceptions;
 
 /* Cross-document view transitions (progressive enhancement) */
-@view-transition {
-  navigation: auto;
-}
-
 @media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
   :root {
     interpolate-size: allow-keywords;
   }
@@ -49,12 +49,24 @@
     --color-ink-hover-bg: var(--color-ink-hover-bg-light);
     --color-rule: var(--color-rule-light);
 
+    /* Raw ambient layer tokens */
+    --shadow-blend-light: multiply;
+    --shadow-blend-dark: screen;
+    --shadow-filter-light: grayscale(1) contrast(1.4) brightness(1.05);
+    --shadow-filter-dark: grayscale(1);
+    --shadow-opacity-light: 0.32;
+    --shadow-opacity-dark: 0.1;
+    --grain-blend-light: multiply;
+    --grain-blend-dark: screen;
+    --grain-opacity-light: 0.18;
+    --grain-opacity-dark: 0.08;
+
     /* Ambient layer defaults (light mode) */
-    --shadow-blend: multiply;
-    --shadow-filter: grayscale(1) contrast(1.4) brightness(1.05);
-    --shadow-opacity: 0.32;
-    --grain-blend: multiply;
-    --grain-opacity: 0.18;
+    --shadow-blend: var(--shadow-blend-light);
+    --shadow-filter: var(--shadow-filter-light);
+    --shadow-opacity: var(--shadow-opacity-light);
+    --grain-blend: var(--grain-blend-light);
+    --grain-opacity: var(--grain-opacity-light);
 
     @media (prefers-color-scheme: dark) {
       --color-paper: var(--color-paper-dark);
@@ -62,11 +74,11 @@
       --color-ink-muted: var(--color-ink-muted-dark);
       --color-ink-hover-bg: var(--color-ink-hover-bg-dark);
       --color-rule: var(--color-rule-dark);
-      --shadow-blend: screen;
-      --shadow-filter: grayscale(1);
-      --shadow-opacity: 0.1;
-      --grain-blend: screen;
-      --grain-opacity: 0.08;
+      --shadow-blend: var(--shadow-blend-dark);
+      --shadow-filter: var(--shadow-filter-dark);
+      --shadow-opacity: var(--shadow-opacity-dark);
+      --grain-blend: var(--grain-blend-dark);
+      --grain-opacity: var(--grain-opacity-dark);
     }
 
     /* Modern light-dark() when supported */
@@ -170,7 +182,7 @@
     text-wrap: balance;
   }
 
-  :where(a, button):focus-visible {
+  :where(a, button, summary):focus-visible {
     outline: 2px solid var(--color-ink);
     outline-offset: 3px;
   }
@@ -386,7 +398,7 @@
     padding-block: clamp(2rem, 6vh, 4.5rem);
   }
 
-  .hero-grid {
+  :where(.hero-grid, .hero-aside) {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -404,19 +416,15 @@
     color: var(--color-ink);
   }
 
-  .hero-aside {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-lg);
+  :where(.hero-bio, .page-header__summary, .specimen-row__desc) {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--color-ink-muted);
+    text-wrap: pretty;
   }
 
   .hero-bio {
-    font-family: var(--font-sans);
-    font-size: var(--text-body);
     line-height: 1.5;
-    color: var(--color-ink-muted);
-    text-wrap: pretty;
     max-inline-size: 36ch;
   }
 
@@ -513,11 +521,7 @@
   }
 
   .page-header__summary {
-    font-family: var(--font-sans);
-    font-size: var(--text-body);
     line-height: 1.5;
-    color: var(--color-ink-muted);
-    text-wrap: pretty;
     max-inline-size: 42ch;
   }
 
@@ -635,9 +639,7 @@
     transition: color 280ms var(--ease-editorial);
   }
 
-  .specimen-row__index,
-  .specimen-row__discipline,
-  .specimen-row__year {
+  :where(.specimen-row__index, .specimen-row__discipline, .specimen-row__year) {
     transition: color 280ms var(--ease-editorial);
   }
 
@@ -666,11 +668,7 @@
   }
 
   .specimen-row__desc {
-    font-family: var(--font-sans);
-    font-size: var(--text-body);
     line-height: 1.6;
-    color: var(--color-ink-muted);
-    text-wrap: pretty;
     max-inline-size: 52ch;
   }
 
@@ -709,12 +707,22 @@
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14);
       pointer-events: none;
       opacity: 0;
-      scale: 0.97;
-      will-change: transform, opacity, scale;
-      transition:
-        opacity 220ms var(--ease-editorial),
-        scale 220ms var(--ease-editorial),
-        transform 280ms var(--ease-editorial);
+      will-change: transform, opacity;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .work-preview {
+        scale: 0.97;
+        will-change: transform, opacity, scale;
+        transition:
+          opacity 220ms var(--ease-editorial),
+          scale 220ms var(--ease-editorial),
+          transform 280ms var(--ease-editorial);
+      }
+
+      .work-preview[data-visible="true"] {
+        scale: 1;
+      }
     }
 
     .work-preview[data-snap="true"] {
@@ -723,7 +731,6 @@
 
     .work-preview[data-visible="true"] {
       opacity: 1;
-      scale: 1;
     }
 
     .work-preview__header {
@@ -781,20 +788,20 @@
 @layer exceptions {
   :root:has(> head > meta[name="color-scheme"][content="light"]) {
     color-scheme: light;
-    --shadow-blend: multiply;
-    --shadow-filter: grayscale(1) contrast(1.4) brightness(1.05);
-    --shadow-opacity: 0.32;
-    --grain-blend: multiply;
-    --grain-opacity: 0.18;
+    --shadow-blend: var(--shadow-blend-light);
+    --shadow-filter: var(--shadow-filter-light);
+    --shadow-opacity: var(--shadow-opacity-light);
+    --grain-blend: var(--grain-blend-light);
+    --grain-opacity: var(--grain-opacity-light);
   }
 
   :root:has(> head > meta[name="color-scheme"][content="dark"]) {
     color-scheme: dark;
-    --shadow-blend: screen;
-    --shadow-filter: grayscale(1);
-    --shadow-opacity: 0.1;
-    --grain-blend: screen;
-    --grain-opacity: 0.08;
+    --shadow-blend: var(--shadow-blend-dark);
+    --shadow-filter: var(--shadow-filter-dark);
+    --shadow-opacity: var(--shadow-opacity-dark);
+    --grain-blend: var(--grain-blend-dark);
+    --grain-opacity: var(--grain-opacity-dark);
   }
 
   [data-justify="between"] {
