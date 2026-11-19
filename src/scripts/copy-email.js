@@ -34,13 +34,11 @@ if (copyEmailLinks.length > 0 && navigator.clipboard?.writeText) {
       try {
         await navigator.clipboard.writeText(email);
         link.textContent = 'copied';
-        link.dataset.copied = 'true';
         announce(`Copied ${email} to clipboard`);
 
         clearTimeout(resetTimer);
         resetTimer = setTimeout(() => {
           link.textContent = originalText;
-          delete link.dataset.copied;
         }, 1800);
       } catch {
         window.location.href = link.href;
