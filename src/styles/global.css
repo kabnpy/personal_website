@@ -306,9 +306,14 @@
     color: var(--color-ink-muted);
   }
 
-  .chrome-link__arrow {
+  :where(.chrome-link__arrow, .enter-link__arrow) {
     display: inline-block;
-    transition: transform var(--duration-fast) var(--ease-editorial);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :where(.chrome-link__arrow, .enter-link__arrow) {
+      transition: transform var(--duration-fast) var(--ease-editorial);
+    }
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -449,11 +454,6 @@
       transform 120ms ease-out;
   }
 
-  .enter-link__arrow {
-    display: inline-block;
-    transition: transform var(--duration-fast) var(--ease-editorial);
-  }
-
   @media (hover: hover) and (pointer: fine) {
     .enter-link:hover {
       background-color: var(--color-ink-hover-bg);
@@ -570,8 +570,14 @@
     list-style: none;
     transition:
       background-color 280ms var(--ease-editorial),
-      color 280ms var(--ease-editorial),
-      padding-inline 280ms var(--ease-editorial);
+      color 280ms var(--ease-editorial);
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition:
+        background-color 280ms var(--ease-editorial),
+        color 280ms var(--ease-editorial),
+        padding-inline 280ms var(--ease-editorial);
+    }
 
     @media (min-width: 48rem) {
       grid-template-columns: 3.5rem minmax(0, 1fr) 10rem 4rem 1.5rem;
@@ -619,7 +625,12 @@
     .specimen-row__summary:hover {
       background-color: var(--color-ink);
       color: var(--color-paper);
-      padding-inline: var(--space-lg);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .specimen-row__summary:hover {
+        padding-inline: var(--space-lg);
+      }
     }
 
     .specimen-row__summary:hover .specimen-row__title {
