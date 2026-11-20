@@ -797,63 +797,9 @@
       color: var(--color-ink);
     }
   }
-}
 
-/* --------------------------------------------------------------------------
-   6. EXCEPTIONS (Data-attribute & ARIA state variations — CUBE CSS)
-   -------------------------------------------------------------------------- */
-@layer exceptions {
-  :root:has(> head > meta[name="color-scheme"][content="light"]) {
-    color-scheme: light;
-    --shadow-blend: var(--shadow-blend-light);
-    --shadow-filter: var(--shadow-filter-light);
-    --shadow-opacity: var(--shadow-opacity-light);
-    --grain-blend: var(--grain-blend-light);
-    --grain-opacity: var(--grain-opacity-light);
-  }
-
-  :root:has(> head > meta[name="color-scheme"][content="dark"]) {
-    color-scheme: dark;
-    --shadow-blend: var(--shadow-blend-dark);
-    --shadow-filter: var(--shadow-filter-dark);
-    --shadow-opacity: var(--shadow-opacity-dark);
-    --grain-blend: var(--grain-blend-dark);
-    --grain-opacity: var(--grain-opacity-dark);
-  }
-
-  [data-justify="between"] {
-    justify-content: space-between;
-  }
-
-  [data-gap="xl"] {
-    --stack-gap: clamp(1.5rem, 3vw, 2.5rem);
-  }
-
-  .chrome-link[aria-current="page"] {
-    color: var(--color-ink);
-    text-decoration: underline;
-    text-underline-offset: 0.35em;
-  }
-
-  .chrome-toggle[aria-pressed="true"] {
-    color: var(--color-ink);
-  }
-
-  .ambient-layer--shadows[data-hidden="true"] {
-    opacity: 0;
-  }
-
-  .reveal {
-    animation-delay: calc(80ms + (var(--reveal-order, 1) - 1) * 45ms);
-  }
-}
-
-/* ==========================================================================
-   Prose & Contact Pages (About, Contact)
-   ========================================================================== */
-@layer blocks {
-  .prose-grid,
-  .contact-grid {
+  /* Prose & Contact pages (About, Contact) */
+  .editorial-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: clamp(2rem, 5vw, 4rem);
@@ -864,7 +810,7 @@
     }
   }
 
-  :where(.prose-grid__content, .contact-grid__content) {
+  .editorial-grid__content {
     @media (min-width: 48rem) {
       grid-column: 2;
     }
@@ -901,9 +847,12 @@
     margin-block-end: var(--space-md);
   }
 
+  .section-label > * {
+    margin: 0;
+  }
+
   .section-label__title {
     font-weight: 400;
-    margin: 0;
   }
 
   .now-list,
@@ -977,10 +926,6 @@
     overflow-wrap: anywhere;
   }
 
-  .contact-email[data-copied="true"] {
-    text-decoration-style: dotted;
-  }
-
   .contact-form {
     display: flex;
     flex-direction: column;
@@ -1018,21 +963,19 @@
     border-block-end-color: var(--color-ink);
   }
 
-  .field__input[aria-invalid="true"] {
-    border-block-end-color: var(--color-ink);
-    border-block-end-style: dashed;
-  }
-
   .field__textarea {
     resize: vertical;
     min-block-size: 7.5rem;
   }
 
-  .field__error {
+  :where(.field__error, .form-status) {
     margin: 0;
-    min-block-size: 1.1em;
     font-family: var(--font-mono);
     font-size: var(--text-label);
+  }
+
+  .field__error {
+    min-block-size: 1.1em;
     color: var(--color-ink);
   }
 
@@ -1050,9 +993,6 @@
   }
 
   .form-status {
-    margin: 0;
-    font-family: var(--font-mono);
-    font-size: var(--text-label);
     color: var(--color-ink-muted);
   }
 
@@ -1062,5 +1002,63 @@
       grid-template-columns: minmax(0, 1fr);
       gap: var(--space-2xs);
     }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. EXCEPTIONS (Data-attribute & ARIA state variations — CUBE CSS)
+   -------------------------------------------------------------------------- */
+@layer exceptions {
+  :root:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+    --shadow-blend: var(--shadow-blend-light);
+    --shadow-filter: var(--shadow-filter-light);
+    --shadow-opacity: var(--shadow-opacity-light);
+    --grain-blend: var(--grain-blend-light);
+    --grain-opacity: var(--grain-opacity-light);
+  }
+
+  :root:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+    --shadow-blend: var(--shadow-blend-dark);
+    --shadow-filter: var(--shadow-filter-dark);
+    --shadow-opacity: var(--shadow-opacity-dark);
+    --grain-blend: var(--grain-blend-dark);
+    --grain-opacity: var(--grain-opacity-dark);
+  }
+
+  [data-justify="between"] {
+    justify-content: space-between;
+  }
+
+  [data-gap="xl"] {
+    --stack-gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .chrome-link[aria-current="page"] {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 0.35em;
+  }
+
+  .chrome-toggle[aria-pressed="true"] {
+    color: var(--color-ink);
+  }
+
+  .ambient-layer--shadows[data-hidden="true"] {
+    opacity: 0;
+  }
+
+  .contact-email[data-copied="true"] {
+    text-decoration-style: dotted;
+  }
+
+  .field__input[aria-invalid="true"] {
+    border-block-end-color: var(--color-ink);
+    border-block-end-style: dashed;
+  }
+
+  .reveal {
+    animation-delay: calc(80ms + (var(--reveal-order, 1) - 1) * 45ms);
   }
 }
